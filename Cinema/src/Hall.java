@@ -25,7 +25,7 @@ public class Hall {
         {
             for(int j=0;j<capacityx;j++)
             {
-               // array_seats[i][j].setSeat(j,i);                           //UNCOMMENT
+                array_seats[i][j].setSeat(j,i);                           
             }
         }
     }
