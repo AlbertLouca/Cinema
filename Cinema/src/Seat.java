@@ -11,7 +11,7 @@ public class Seat{
         
          
     
-    public boolean setSeat(int ID , char group){
+public boolean setSeat(int ID , char group){
        if (isAvailable == false){
         
         return false;

@@ -29,4 +29,3 @@ public int getmin(){
     return min;
 }
 }
-

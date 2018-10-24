@@ -1,38 +1,68 @@
 public class Schedule {
-Movie movies[];
-    //private int iD;
-   //private String name;
-    //private Time time;
-Schedule(){
-    
-    
-//movies[]=new Movie[];
+   private Movie movies[]= new Movie[Now_Playing.cap];
+  
+    Schedule() {
+       
+        for(int i=0;i<Now_Playing.cap;i++ )  {
+            movies[i]=null;
+        }
+       
+      }
 
-//iD=0;
-//name=null;
-//time=null;
-
-}
-/*
-    public boolean setSchedule(Movie movie, int userID) {
+    public boolean setSchedule(Movie movies[], int userID) {
      if(userID==1){
-            
-        
-        this.time = movie.getTimeOfPlay();
-        this.name =movie.getName();
+         for(int i=0;i<Now_Playing.cap*2;i++ ){
+             
+         this.movies [i]=movies[i];
+         
+         
+         }
+          
         return true;}
      else{
          return false;
      }
     }
+    public boolean update(Movie movie,int userID){
+    if(userID==1){
+     
+   for(int i=0;i<Now_Playing.cap;i++){
+   if(movies[i]==null){
+       movies[i]=movie;
+       return true;
+   
+  }
   
+   }
+ 
+    }
+    return false;
+    
+  }
+    public boolean Remove(int movieiD, int userID){
+    if (userID==1){
+     for(int i=0;i<Now_Playing.cap;i++){
+     if(movies[i].getID==movieiD){
+     
+     movies[i]=null;
+     for(int j=i;j<(Now_Playing.cap*2)-1;j++ ){
+ movies[j]=movies[j=1];
+ 
+ }
+     return true ;       
+     }
+     
+     
+     }
+    
+  }
 
-public Time gettime(){
-return time;
+    return false;
+    }
+ 
+    public Movie[] getMovies(){
+        return movies;
 }
-public String getname(){
-return name;
-}
-    */
+
     
 }
