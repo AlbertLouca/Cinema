@@ -12,12 +12,15 @@ public class Manager extends User {
         return true;
     }
 
-    public void setSchedule() 
+    public boolean setSchedule(Schedule sch) 
     {
         
     }
 
-    public void setMovieDetails() {
+    public boolean setMovieDetails(Movie mov,String name,boolean is3D,Time tim) 
+    {
+        mov.setMovieDetails(name, ID, is3D, tim);
+        return true;
     }
 
     public void setNowPlaying() {
@@ -26,11 +29,15 @@ public class Manager extends User {
     public void setUpComing() {
     }
 
-    public void updateSchedule() {
+    public void updateSchedule(Schedule sch) 
+    {
+        
     }
 
-    public boolean addmovie(Movie_Data dat, Movie mov) {
+    public boolean addmovie(Movie_Data dat, Movie mov)
+    {
        // throw new UnsupportedOperationException("Not supported yet.");
+        dat.
        
     }
 
