@@ -10,7 +10,7 @@ public Upcoming_Movies(){
 
     public boolean setLaterMoviesArray(Movie[] laterMoviesArray,int userID) {
        if(userID==1){ 
-           for(int i=0;i<Now_Playing.cap*2;i++){
+           for(int i=0;i<Now_Playing.cap;i++){
                if(laterMoviesArray[i].nowPlaying==false)
                this.laterMoviesArray[i] = laterMoviesArray[i];
            
