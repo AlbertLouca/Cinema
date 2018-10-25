@@ -20,11 +20,11 @@ public class Time{
         
     }
     }
-public int gethour(){
+public int getHour(){
     
     return hour;
 }
-public int getmin(){
+public int getMin(){
     
     return min;
 }
