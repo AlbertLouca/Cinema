@@ -12,8 +12,9 @@ public class Manager extends User {
         return true;
     }
 
-    public boolean setSchedule(Schedule sch) 
+    public boolean setSchedule(Schedule sch,Movie []movies) 
     {
+        return sch.setSchedule(movies, ID);
         
     }
 
@@ -23,25 +24,34 @@ public class Manager extends User {
         return true;
     }
 
-    public void setNowPlaying() {
+    public boolean setNowPlaying(Now_Playing currentmovies,Movie movie []) {
+
+      return currentmovies.setthisMonthMoviesArray(movie, ID);
+
+
+    }
+    public boolean setUpComing(Upcoming_Movies comingmovies , Movie movie [] ) {
+return comingmovies.setLaterMoviesArray(movie, ID);
+
+
+    
     }
 
-    public void setUpComing() {
-    }
-
-    public void updateSchedule(Schedule sch) 
+    public boolean updateSchedule(Schedule sch, Movie mov) 
     {
-        
+        return sch.update(mov, ID);
     }
 
     public boolean addmovie(Movie_Data dat, Movie mov)
     {
        // throw new UnsupportedOperationException("Not supported yet.");
-        dat.
+        return dat.addMovie(mov);
        
     }
 
-    public int removeMovie(Movie_Data dat, int movieID) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean removeMovie(Movie_Data dat, int movieID) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    
+        return dat.removeMovie(movieID);
     }
 }
