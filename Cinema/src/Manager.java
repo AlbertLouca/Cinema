@@ -36,7 +36,32 @@ return comingmovies.setLaterMoviesArray(movie, ID);
 
     
     }
-
+    
+        public boolean removeFromUpcoming(Upcoming_Movies np,int MovieID)
+    {
+       return np.Remove(MovieID, ID);
+    }
+    
+    public boolean  updateUpcoming(Upcoming_Movies np,Movie mov)
+    {
+        return np.update(mov, ID);
+    }
+    
+    public boolean removeFromNowPlaying(Now_Playing np,int MovieID)
+    {
+       return np.Remove(MovieID, ID);
+    }
+    
+    public boolean  updateNowPlaying(Now_Playing np,Movie mov)
+    {
+        return np.update(mov, ID);
+    }
+    
+public boolean removeFromSchedule(Schedule sch,int MovieID)
+{
+    return sch.Remove(MovieID, ID);
+    
+}
     public boolean updateSchedule(Schedule sch, Movie mov) 
     {
         return sch.update(mov, ID);
