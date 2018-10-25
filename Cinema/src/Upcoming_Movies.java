@@ -11,7 +11,7 @@ public Upcoming_Movies(){
     public boolean setLaterMoviesArray(Movie[] laterMoviesArray,int userID) {
        if(userID==1){ 
            for(int i=0;i<Now_Playing.cap;i++){
-               if(laterMoviesArray[i].nowPlaying==false)
+               if(laterMoviesArray[i].isNowPlaying()==false)
                this.laterMoviesArray[i] = laterMoviesArray[i];
            
            
@@ -43,7 +43,7 @@ public Upcoming_Movies(){
     public boolean Remove(int movieiD, int userID){
     if (userID==1){
      for(int i=0;i<Now_Playing.cap;i++){
-     if(laterMoviesArray[i].getID==movieiD){
+     if(laterMoviesArray[i].getID()==movieiD){
      laterMoviesArray[i]=null;
  for(int j=i;j<(Now_Playing.cap*2)-1;j++ ){
  laterMoviesArray[j]=laterMoviesArray[j=1];
