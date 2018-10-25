@@ -42,7 +42,7 @@ public class Schedule {
     public boolean Remove(int movieiD, int userID){
     if (userID==1){
      for(int i=0;i<Now_Playing.cap;i++){
-     if(movies[i].getID==movieiD){
+     if(movies[i].getID()==movieiD){
      
      movies[i]=null;
      for(int j=i;j<(Now_Playing.cap*2)-1;j++ ){
