@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -43,16 +42,17 @@ public class Movie_Data extends Manager implements IFile  {
      
  }
 
-    public boolean checkSeatAvailability(int hallNo,int pos,char group) {
-       Seat s;
-        s=arrayHalls[hallNo].getseat(group, pos);
+     public boolean checkSeatAvailability(Hall hall,int pos,char group) {
+      Seat s;
+      s=hall.getseat(group, pos);
+        //s=arrayHalls[hallNo].getSeat(pos,group);
         
-      if(s.isIsAvailable())
+      if( s.isIsAvailable())
       {
+          hall.getseat(group, pos).reserve();
           return true;
       }
-      return false;
-    }
+   return false; }
     
     public boolean setMovieArray(Movie temp[])
     {
@@ -210,4 +210,5 @@ public class Movie_Data extends Manager implements IFile  {
                 Logger.getLogger(Movie_Data.class.getName()).log(Level.SEVERE, null, ex);
             
     }*/
+
 
