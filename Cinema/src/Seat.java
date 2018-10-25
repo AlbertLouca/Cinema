@@ -50,21 +50,23 @@ public boolean reserve ()
     else return false;
 }
 
-public boolean setSeat(boolean isAvailabe ,int userID)
-{
-        if(userID==1){
-            this.isAvailable=isAvailable;
-        }
-    else if (isAvailable == false){
-        
-        return false;
-        
-    }
-    
-
-isAvailable=false;
-return true;
-}
+//public boolean resetSeat(boolean isAvailabe ,int userID)
+//{
+//        if(userID==1){
+//            this.isAvailable=isAvailable;
+//            return true;
+//        }
+//    else if (isAvailable == false){
+//        
+//        return false;
+//        
+//    }
+//    
+//
+//isAvailable=false;
+//else
+//return false;
+//}
 
     public boolean isIsAvailable() {
         return isAvailable;
