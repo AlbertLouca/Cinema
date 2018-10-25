@@ -1,4 +1,5 @@
 
+
 //package cinema;
 import java.io.*;
 //import java.io.BufferedWriter;
@@ -9,6 +10,10 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Cinema {
+
+    private static void Movie(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     boolean Exit=false;
      Scanner read=new Scanner(System.in);
      public int getinput(int NumChoices){
@@ -59,7 +64,9 @@ System.out.println("|--------------------------------------------|");
         Cinema Menu=new Cinema();
        User_Data UserData;
         UserData = new User_Data();
-      
+        UserData.load();
+        int MovieId=1;
+      Movie [] movi = new Movie[MovieId];
       
     Menu.PrintHeader();
     while(!Menu.Exit){
@@ -86,17 +93,17 @@ System.out.println("|--------------------------------------------|");
     return;}
     if(temp.getID()==1 ){     //  manager---------------------------------------------------------
        
-       System.out.println("1)Set hall data");
-       System.out.println("2)Set schedule");
-       System.out.println("3)Set movie details");
-       System.out.println("4)Set now playing movies");
-       System.out.println("5)Set up coming movies");
-       System.out.println("6) Update schedule");
-       System.out.println("7)Add movie");
-       System.out.println("8)Remove movie");
-       System.out.println("9)Change username");
-       System.out.println("10)Change password");
-       System.out.println("11)Give power");
+      // System.out.println("1)Set hall data");
+       System.out.println("1)Add movie"); 
+      // System.out.println("3)Set movie details");
+       System.out.println("2)Set now playing movies");
+       System.out.println("3)Set up coming movies");
+       System.out.println("4) Update schedule");
+       System.out.println("5)Set schedule");
+       System.out.println("6)Remove movie");
+       System.out.println("7)Change username");
+       System.out.println("8)Change password");
+       System.out.println("9)Give power");
        System.out.println("0)Exit");
     choice=Menu.getinput(11);
     switch(choice){
@@ -104,7 +111,17 @@ System.out.println("|--------------------------------------------|");
         System.out.println("0 sha8al");
         break;
         case 1:
+            String temp1;
+            System.out.println("movie name: ");
             
+            temp1=read.nextLine();
+          
+          movi[MovieId].setName(temp1);
+           System.out.println("is the movie 3d? (yes or no) ");
+              temp1=read.nextLine();
+              if(temp1=="yes")
+                   movi[MovieId].setIs3D(true);
+              else  movi[MovieId].setIs3D(false);
             break;
         case 2:
             
@@ -133,9 +150,7 @@ System.out.println("|--------------------------------------------|");
         case 10:
             
             break;
-        case 11:
-            
-            break;
+        
                                                 
     }
                
@@ -196,4 +211,5 @@ System.out.println("|--------------------------------------------|");
     }
             }
              }   }   
+
 
