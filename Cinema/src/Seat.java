@@ -40,6 +40,17 @@ public boolean setSeat(int ID , char group){
     return true;
 }
 
+    public boolean reserve ()
+{
+    if(isAvailable)
+    {
+        isAvailable=false;
+        return true;
+    }
+    else return false;
+}
+
+    
 public boolean setSeat(boolean isAvailabe ,int userID)
 {
         if(userID==1){
