@@ -1,5 +1,8 @@
 
 import java.io.*;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -22,7 +25,23 @@ public class Movie_Data extends Manager implements IFile  {
     private Movie movieArray[]=new Movie [Now_Playing.cap*2];
 
     private Hall arrayHalls[];
-    
+    public String[] UnToken(String Line){
+     String result[]=new String[20];
+     String Word="";
+     int ctr=0;
+     for(int i=0;i<Line.length();i++){
+         if(Line.charAt(i)!='~'){
+             Word=Word+Line.charAt(i); 
+         }
+         else {
+             result[ctr]=Word;
+             ctr++;
+             Word=new String();
+         }
+     }
+     return result;
+     
+ }
 
     public boolean checkSeatAvailability(int hallNo,int pos,char group) {
        Seat s;
@@ -83,11 +102,12 @@ public class Movie_Data extends Manager implements IFile  {
     }
     
     
+    
     public boolean save() throws FileNotFoundException
     {
         /*--------saves movies details--------*/
-        file myFile=new file("C:\\Users\\MHDSA\\Documents\\CINEMA\\moviesData.txt");
-        PrintWriter write=new PrintWriter(new file(myFile));
+        File myFile=new File("C:\\Users\\MHDSA\\Documents\\CINEMA\\moviesData.txt");
+        PrintWriter writer=new PrintWriter(new File(myFile));
         for(int i=0;i<Now_Playing.cap*2;i++){
                
                 //BufferedWriter write=new BufferedWriter(movieArray[s].getName()+"~");
@@ -97,8 +117,8 @@ public class Movie_Data extends Manager implements IFile  {
                  
                  
          /*-------saves hall details---------*/
-         myFile=new file("C:\\Users\\MHDSA\\Documents\\CINEMA\\hallsData.txt");
-         PrintWriter write=new PrintWriter(new file(myFile));
+         myFile=new File("C:\\Users\\MHDSA\\Documents\\CINEMA\\hallsData.txt");
+         PrintWriter writer=new PrintWriter(new File(myFile));
                 for(int i=0;i<3;i++)
                 { 
                     for(int j=0;j<6;j++)
@@ -117,31 +137,44 @@ public class Movie_Data extends Manager implements IFile  {
     
     public boolean load()// throws FileNotFoundException
     {
-                file myFile=new file("C:\\Users\\MHDSA\\Documents\\CINEMA\\moviesData.txt");
-                Scanner sc=new Scanner(myFile);
-                int hour,min;
-                //Time t=new Time();
-                int ctr=0;
-                while(sc.hasNext())
-                {
-                    String line=sc.nextLine();
-                String []separated=Tokens(line,"~");
-                    movieArray[i].setID((int)separated[0]);
-                    movieArray[i].setName(separated[1]);
-                    hour=(int)separated[2];
-                    min=(int)separated[3];
-                    movieArray[i].setTimeOfPlay(hour,min);
-                    movieArray[i].setIs3D((boolean)separated[4]);
-                    movieArray[i].isNowPlaying((boolean)separated[5]);
-                    ctr++
-                }
-                if(ctr>0){
+        try // throws FileNotFoundException
+        {
+            File myFile=new File("C:\\Users\\MHDSA\\Documents\\CINEMA\\moviesData.txt");
+            Scanner sc=new Scanner(myFile);
+            int hour,min;
+            //Time t=new Time();
+            int ctr=0;
+            int i=0;
+            while(sc.hasNext())
+            {
+                String line=sc.nextLine();
+                String []separated=UnToken(line);
+                //    movieArray[i].setID((int)separated[i]);
+                movieArray[i].setID(Integer.parseInt(separated[0]));
+                movieArray[i].setName(separated[1]);
+                //  hour=(int)separated[i+2];
+                hour=(Integer.parseInt(separated[2]));
+                // min=(int)separated[3];
+                min=(Integer.parseInt(separated[3]));
+                movieArray[i].setTimeOfPlay(hour,min);
+                // movieArray[i].setIs3D((boolean)separated[4]);
+                movieArray[i].setIs3D( Boolean.parseBoolean(separated[4]) );
+                // movieArray[i].isNowPlaying((boolean)separated[5]);
+                movieArray[i].setNowPlaying( Boolean.parseBoolean(separated[5]));
+                ctr++;
+                i++;
+            }
+            if(ctr>0){
                 return true;
-                }
-        else
-                    return false;
+            }
+            else
+                return false;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Movie_Data.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
-}/*
+}
  /* 
     @Override
     public void load()
@@ -162,7 +195,6 @@ public class Movie_Data extends Manager implements IFile  {
         Logger.getLogger(Movie_Data.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
-
     public void save() {
         File myFile=new File("C:\\Users\\MHDSA\\Documents\\CINEMA\\moviesData.txt");
         
@@ -177,5 +209,5 @@ public class Movie_Data extends Manager implements IFile  {
             } catch (IOException ex) {
                 Logger.getLogger(Movie_Data.class.getName()).log(Level.SEVERE, null, ex);
             
-    }
-}}
+    }*/
+
