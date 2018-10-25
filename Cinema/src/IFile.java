@@ -1,6 +1,7 @@
 public interface IFile {
 
-    public void save();
+    public boolean save()throws Exception;
 
-    public void load();
+    
+    public boolean load();
 }
