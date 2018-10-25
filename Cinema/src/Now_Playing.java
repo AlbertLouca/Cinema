@@ -11,7 +11,7 @@ public class Now_Playing extends Movie {
  public boolean setthisMonthMoviesArray(Movie[] thisMonthMoviesArray,int userID) {
      if(userID==1){
      for(int i=0;i<Now_Playing.cap;i++){
-         if(thisMonthMoviesArray[i].nowPlaying==true){
+         if(thisMonthMoviesArray[i].isNowPlaying()==true){
          this.thisMonthMoviesArray[i]=thisMonthMoviesArray[i];
          }   
      }
@@ -41,7 +41,7 @@ public class Now_Playing extends Movie {
     public boolean Remove(int movieiD, int userID){
     if (userID==1){
      for(int i=0;i<Now_Playing.cap;i++){
-     if(thisMonthMoviesArray[i].getID==movieiD){
+     if(thisMonthMoviesArray[i].getID()==movieiD){
      thisMonthMoviesArray[i]=null;
  for(int j=i;j<(Now_Playing.cap*2)-1;j++ ){
  thisMonthMoviesArray[j]=thisMonthMoviesArray[j=1];
@@ -66,9 +66,9 @@ public class Now_Playing extends Movie {
     }
 
    
-     public int getCap() {
-        return cap;
-    }
+   //  public int getCap() {
+     //   return cap;
+    //}
     
 }
 //this.thisMonthMoviesArray = laterMoviesArray;

@@ -55,6 +55,11 @@ public boolean setSeat(boolean isAvailabe ,int userID)
 isAvailable=false;
 return true;
 }
+
+    public boolean isIsAvailable() {
+        return isAvailable;
+    }
+
 public int getID(){
     
     return ID;
