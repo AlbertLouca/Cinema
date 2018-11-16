@@ -1,11 +1,14 @@
-public class Online_Client extends Reserver {
+public class Online_Client extends Now_Playing {
+    
 
-    public void seeNowPlaying() {
+    public Movie[] seeNowPlaying()
+    {
+    return getthisMonthMoviesArray();
     }
 
-    public void seeUpComing() {
+    public int giveReservationID(Ticket One) 
+    {
+        return One.getID();
     }
 
-    public void giveReservationID() {
-    }
 }
