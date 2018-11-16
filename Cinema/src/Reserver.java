@@ -1,14 +1,22 @@
-public class Reserver extends User {
-
-    public Payment choosePayment(Payment pay) {
-        throw new UnsupportedOperationException("Not supported yet.");
+public class Reserver extends Schedule {
+    public int Price(Payment pay,Time tim , char seatgroup) 
+    {
+      
+      return pay.CalcPrice(pay, tim, seatgroup);
+      
+    
     }
 
-    public Schedule chooseMovieAndTime(Schedule sch) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Movie [] chooseMovieAndTime(Schedule sch)
+    {
+return sch.getMovies();
+    };
+
+    public boolean reserve(Movie_Data x,Hall hall, char h,int pos)
+     {
+return x.checkSeatAvailability(hall, pos, h);
+        
     }
 
-    public char reserve(Movie_Data x, char h) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+  
 }
