@@ -11,12 +11,12 @@ public class Seat{
         
          
     
-    public boolean setSeat(int ID , char group){
-       if (isAvailable == false){
-        
-        return false;
-        
-    }
+public boolean setSeat(int ID , char group){
+//       if (isAvailable == false){
+//        
+//        return false;
+//        
+//    }
 
     
     if(group>='A'&&group<='Z'){
@@ -28,7 +28,7 @@ public class Seat{
         
       return false;
     }
-    if (ID>=0 && ID<=100){
+    if (ID>=0 && ID<=10){
         this.ID=ID;
 
 
@@ -36,25 +36,25 @@ public class Seat{
         
         return false;
     }
-    isAvailable=false;
+    //isAvailable=false;
     return true;
 }
 
-public boolean setSeat(boolean isAvailabe ,int userID)
+public boolean reserve ()
 {
-        if(userID==1){
-            this.isAvailable=isAvailable;
-        }
-    else if (isAvailable == false){
-        
-        return false;
-        
+    if(isAvailable)
+    {
+        isAvailable=false;
+        return true;
     }
-    
-
-isAvailable=false;
-return true;
+    else return false;
 }
+
+
+    public boolean isIsAvailable() {
+        return isAvailable;
+    }
+
 public int getID(){
     
     return ID;
