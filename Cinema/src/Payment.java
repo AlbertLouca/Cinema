@@ -24,7 +24,7 @@ int price = 20 ;
          {
              price = price;
          } 
-         if (seatgroup == 'A' || seatgroup == 'B' || seatgroup == 'c' )
+         if (seatgroup == 'A' || seatgroup == 'B' || seatgroup == 'C' )
          {
              price += 15;
          }
