@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 public class Reserver extends Schedule {
     public int Price(Payment pay,Time tim , char seatgroup) 
     {
@@ -7,7 +10,7 @@ public class Reserver extends Schedule {
     
     }
 
-    public Movie [] chooseMovieAndTime(Schedule sch)
+    public ArrayList<Movie> chooseMovieAndTime(Schedule sch)
     {
 return sch.getMovies();
     };
