@@ -28,6 +28,10 @@ int price = 20 ;
          {
              price += 15;
          }
+         if( seatgroup == 'D' || seatgroup == 'E' || seatgroup == 'F' ||  seatgroup == 'G' )
+         {
+             price += 25 ;
+         }
          else  
          {
              price += 5 ;
