@@ -1,10 +1,14 @@
+
+import java.util.ArrayList;
+
 public class Schedule {
-   private Movie movies[]= new Movie[Now_Playing.cap];
+   //private Movie movies[]= new Movie[Now_Playing.cap];
+   private ArrayList<Movie> movies=new ArrayList<Movie>(Now_Playing.cap);
   
     Schedule() {
        
         for(int i=0;i<Now_Playing.cap;i++ )  {
-            movies[i]=null;
+            movies.set(i, null);
         }
        
       }
@@ -13,7 +17,7 @@ public class Schedule {
      if(userID==1){
          for(int i=0;i<Now_Playing.cap*2;i++ ){
              
-         this.movies [i]=movies[i];
+         this.movies.set(i, movies[i]);
          
          
          }
@@ -27,8 +31,8 @@ public class Schedule {
     if(userID==1){
      
    for(int i=0;i<Now_Playing.cap;i++){
-   if(movies[i]==null){
-       movies[i]=movie;
+   if(movies.get(i)==null){
+       movies.set(i, movie);
        return true;
    
   }
@@ -42,13 +46,10 @@ public class Schedule {
     public boolean Remove(int movieiD, int userID){
     if (userID==1){
      for(int i=0;i<Now_Playing.cap;i++){
-     if(movies[i].getID() ==movieiD){
+     if(movies.get(i).getID() ==movieiD){
      
-     movies[i]=null;
-     for(int j=i;j<(Now_Playing.cap*2)-1;j++ ){
- movies[j]=movies[j=1];
- 
- }
+     movies.remove(i);
+   
      return true ;       
      }
      
@@ -60,7 +61,7 @@ public class Schedule {
     return false;
     }
  
-    public Movie[] getMovies(){
+    public ArrayList<Movie> getMovies(){
         return movies;
 }
 
