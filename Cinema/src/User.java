@@ -1,8 +1,13 @@
 import java.io.*;
+import java.util.ArrayList;
 
 public class User {
-public String[] UnToken(String Line){
-     String result[]=new String[50];
+        protected String username;
+
+    protected String password;
+public ArrayList<String> UnToken(String Line){
+  //   String result[]=new String[50];
+     ArrayList<String> result=new ArrayList <String>(2);
      String Word="";
      int ctr=0;
      for(int i=0;i<Line.length();i++){
@@ -10,7 +15,7 @@ public String[] UnToken(String Line){
              Word=Word+Line.charAt(i); 
          }
          else {
-             result[ctr]=Word;
+             result.set(ctr,Word);
              ctr++;
              Word=new String();
          }
@@ -63,9 +68,7 @@ public User ()
 else
             return false;
     }
-    protected String username;
 
-    protected String password;
 
     public boolean Login(String username, String password) throws IOException
     {
@@ -78,18 +81,17 @@ while((myString = in.readLine()) != null)
 {
     
         
-    String [] text = UnToken(myString) ; // Array Of Strings
+    ArrayList<String> text = UnToken(myString) ; // Array Of Strings
     for(int j=0;j<10;j++){
         //System.out.println(text[j]);
    
-    if (text[i].equals(username) && text[i+1].equals(password))
+    if (text.get(i).equals(username) && text.get(i+1).equals(password))
            {
          return true;
      }
-i++;} in.close(); }
+i+=2;} in.close(); }
          return false;
     
     }}
             
   
-
