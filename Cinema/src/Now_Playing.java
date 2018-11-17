@@ -1,10 +1,15 @@
+
+import java.util.ArrayList;
+
+
 public class Now_Playing extends Movie {
      public static final int cap=10;
-    private Movie thisMonthMoviesArray[]=new Movie [cap];
+    //private Movie thisMonthMoviesArray[]=new Movie [cap];
+    private ArrayList<Movie> thisMonthMoviesArray= new ArrayList<Movie> (cap);
 
     public Now_Playing() {
         for (int i=0;i<10;i++){
-        thisMonthMoviesArray[i]=null;
+        thisMonthMoviesArray.set(i,null);
         
         }
         }
@@ -12,7 +17,7 @@ public class Now_Playing extends Movie {
      if(userID==1){
      for(int i=0;i<Now_Playing.cap;i++){
          if(thisMonthMoviesArray[i].isNowPlaying()==true){
-         this.thisMonthMoviesArray[i]=thisMonthMoviesArray[i];
+         this.thisMonthMoviesArray.set(i, thisMonthMoviesArray[i]);
          }   
      }
      return true;
@@ -26,11 +31,11 @@ public class Now_Playing extends Movie {
     if(userID==1){
      
    for(int i=0;i<Now_Playing.cap;i++){
-   if(thisMonthMoviesArray[i]==null){
-       thisMonthMoviesArray[i]=movie;
+
+       thisMonthMoviesArray.add(i, movie);
        return true;
    
-  }
+  
   
    }
  
@@ -41,12 +46,9 @@ public class Now_Playing extends Movie {
     public boolean Remove(int movieiD, int userID){
     if (userID==1){
      for(int i=0;i<Now_Playing.cap;i++){
-     if(thisMonthMoviesArray[i].getID()==movieiD){
-     thisMonthMoviesArray[i]=null;
- for(int j=i;j<(Now_Playing.cap*2)-1;j++ ){
- thisMonthMoviesArray[j]=thisMonthMoviesArray[j=1];
- 
- }
+     if(thisMonthMoviesArray.get(i).getID()==movieiD){
+     thisMonthMoviesArray.remove(i);
+
      return true ;       
      }
      
@@ -58,15 +60,13 @@ public class Now_Playing extends Movie {
     }
    
  
- 
- 
 
-   public Movie[] getthisMonthMoviesArray() {
+   
+     public ArrayList<Movie> getThisMonthMoviesArray() {
         return thisMonthMoviesArray;
     }
 
-   
-     public int getCap() {
+    public int getCap() {
         return cap;
     }
     
