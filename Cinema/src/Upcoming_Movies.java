@@ -1,9 +1,13 @@
+
+import java.util.ArrayList;
+
 public class Upcoming_Movies extends Movie {
  
-private Movie laterMoviesArray[]=new Movie [Now_Playing.cap];
+//private Movie laterMoviesArray[]=new Movie [Now_Playing.cap];
+private ArrayList <Movie> laterMoviesArray =new ArrayList <Movie> (Now_Playing.cap);
 public Upcoming_Movies(){
     for(int i=0;i<10;i++){
-    laterMoviesArray[i]=null;
+    laterMoviesArray.set(i, null);
     
     }
     }
@@ -12,13 +16,10 @@ public Upcoming_Movies(){
        if(userID==1){ 
            for(int i=0;i<Now_Playing.cap;i++){
                if(laterMoviesArray[i].isNowPlaying()==false)
-               this.laterMoviesArray[i] = laterMoviesArray[i];
-           
-           
-           }
+               this.laterMoviesArray.set(i, laterMoviesArray[i]);
+    }
            return true;
-       
-       }
+  }
        else{
        return false;}
     }
@@ -28,11 +29,11 @@ public Upcoming_Movies(){
     if(userID==1){
      
    for(int i=0;i<Now_Playing.cap;i++){
-   if(laterMoviesArray[i]==null){
-       laterMoviesArray[i]=movie;
+
+       laterMoviesArray.add(i, movie);
        return true;
    
-  }
+  
   
    }
  
@@ -43,23 +44,17 @@ public Upcoming_Movies(){
     public boolean Remove(int movieiD, int userID){
     if (userID==1){
      for(int i=0;i<Now_Playing.cap;i++){
-     if(laterMoviesArray[i].getID()==movieiD){
-     laterMoviesArray[i]=null;
- for(int j=i;j<(Now_Playing.cap*2)-1;j++ ){
- laterMoviesArray[j]=laterMoviesArray[j=1];
- 
- }
+     if(laterMoviesArray.get(i).getID()==movieiD){
+     laterMoviesArray.remove(i);
+
      return true ;       
      }
-     
-     
-     }
-    
+    }
   }
     return false;
     }
    
-public Movie[] getLaterMoviesArray() {
+public ArrayList<Movie> getLaterMoviesArray() {
         return laterMoviesArray;
     }
  
