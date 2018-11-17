@@ -1,14 +1,19 @@
+
+import java.util.ArrayList;
+
 public class Online_Client extends Now_Playing {
     
 
-    public Movie[] seeNowPlaying()
+    public ArrayList<Movie> seeNowPlaying()
     {
-    return getthisMonthMoviesArray();
+    return getThisMonthMoviesArray();
     }
 
     public int giveReservationID(Ticket One) 
     {
         return One.getID();
     }
+
+
 
 }
