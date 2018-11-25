@@ -1,18 +1,41 @@
+package cinema;
+import GUI.AdminMenu;
+import GUI.JLogin;
+import GUI.JUser;
+import GUI.MainMenu;
+import Users.Movie_Data;
+import Users.*;
 
 //package cinema;
+
 import java.io.*;
-//import java.io.BufferedWriter;
-//import java.io.FileNotFoundException;
-//import java.io.FileReader;
-//import java.io.FileWriter;
-//import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Cinema {
+   public static  HashMap <String,User> hash=new HashMap <String,User>();
+    public static void savehash() throws FileNotFoundException, IOException{
+        ObjectOutputStream oos = new ObjectOutputStream (new FileOutputStream("C:\\Users\\Chadi N. Louca\\Documents\\Cinema\\HashMap.bin"));
+        oos.writeObject(hash);
+        oos.close();
+    }
+public static void loadhash() throws FileNotFoundException, IOException, ClassNotFoundException{
+    ObjectInputStream ois=new ObjectInputStream(new FileInputStream( "C:\\Users\\Chadi N. Louca\\Documents\\Cinema\\HashMap.bin"));
+    hash=(HashMap<String,User>)ois.readObject();
+    
+    
+    
+}
 
     private static void Movie(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }     
+   public static ArrayList<User> UserLib=new ArrayList<User>();
+    
     boolean Exit=false;
      Scanner read=new Scanner(System.in);
      public int getinput(int NumChoices){
@@ -60,7 +83,24 @@ System.out.println("|--------------------------------------------|");
         } //welcome
     @SuppressWarnings("null")
  public static void main(String[] args) throws IOException,FileNotFoundException {
-        Cinema Menu=new Cinema();
+     
+    // 
+User_Data test=new User_Data();
+test.load();
+System.out.println("Users Data loaded Successfully");
+
+Movie_Data test1=new Movie_Data();
+test1.load();
+System.out.println("Movie Data loaded Successfully");
+MainMenu f=new MainMenu("Main Cinema");
+f.setVisible(true);
+AdminMenu admin=new AdminMenu();
+admin.setVisible(true);
+JLogin log=new JLogin("Login Screen");
+log.setVisible(true);
+JUser frame=new JUser("Micho 3ala wd3o");  ///////////////////////////////////frame
+frame.setVisible(true);
+       Cinema Menu=new Cinema();
        User_Data UserData;
         UserData = new User_Data();
         Movie_Data MovieData;
@@ -81,7 +121,7 @@ System.out.println("|--------------------------------------------|");
                 
             Menu.Exit=true;
               System.out.println("Thanks for using our System");
-              break;
+             break;
         case 1:
             System.out.println("Username: ");
             Scanner read=new Scanner(System.in);
@@ -89,11 +129,17 @@ System.out.println("|--------------------------------------------|");
     System.out.println("Password: ");
     String Take_Password=read.next();
     User temp = new User();
-    if(!temp.Login(Take_Username,Take_Password)){
-            //------------------------------------------------
-        System.out.println("incorrect username or password");
-    break;
-     }
+                     {
+                         try {
+                             if(!temp.Login(Take_Username,Take_Password)){
+                                 //------------------------------------------------
+                                 System.out.println("incorrect username or password");
+                                 break;
+                             }                   } catch (Exception ex) {
+                                   System.out.println("exception found ln main :114");
+                           //  Logger.getLogger(Cinema.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+                     }
     if("admin".equals(Take_Username)&&"password".equals(Take_Password) ){     //  manager---------------------------------------------------------
        
       // System.out.println("1)Set hall data");
@@ -145,7 +191,7 @@ System.out.println("|--------------------------------------------|");
         case 4:
             
             break;
-        case 5:
+        case 5:  //REDO this---------------------------------------------------
 //Sch=new Schedule();
 Movie []Ofmovies=new Movie[10];
 String movii;
@@ -184,18 +230,18 @@ Ofmovies[i].setMovieDetails(movii, i, true, timeOfPlay);
                
                 //end of manager-------------------------------------------------------}
              break;  // return;
-    }else 
+    }else ////////////////////////eshta8al HENAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
         System.out.println("choose movie and time");
    // System.out.println(("Movie: terminator Time: ")
-    Movie [] arrMov ;
+    ArrayList<Movie>  arrMov =new ArrayList<Movie>();
     arrMov=Sch.getMovies();
     try{
- for(int i=0;i<10;i++){
-      System.out.println(arrMov[i].getName()+" " +arrMov[i].getTimeOfPlay().getHour()+":" +arrMov[i].getTimeOfPlay().getMin()+" ");
+ for(Movie Micho:arrMov){
+      System.out.println(Micho.getName()+" " +Micho.getTimeOfPlay().getHour()+":" +Micho.getTimeOfPlay().getMin()+" ");
       }
  String TakeMovieName;
  
-    }catch(NullPointerException e){};
+    }catch(NullPointerException e){}
    
                
         
@@ -219,30 +265,28 @@ Ofmovies[i].setMovieDetails(movii, i, true, timeOfPlay);
              String NUsername=reads.next();
              System.out.println("New Password: ");
              String NPassword=reads.next();
-             BufferedReader in=new BufferedReader(new FileReader("C:\\Users\\Chadi N. Louca\\Documents\\Cinema\\Users.txt"));
-             String search;
-             while((search = in.readLine())!= null){
-               
-             
-                  
-                 String[] Untokened=Menu.UnToken(search);
-                 for(int i=0;i<Untokened.length;i++){
-                if(Untokened[i].equals(NUsername)) {
+             User_Data x=new User_Data();
+             Boolean taken=false;
+             for(User i:UserLib){
+                 if (i.getUsername()==NUsername){
                      System.out.println("Username already taken");
-                i++;return;}}
-             }in.close();
+                     taken=true;
+                 }}
+             if(taken)
+                 break;
+             temp=new User();
+             temp.setUsername(NUsername);
+             temp.setPassword(NPassword);
+             UserLib.add(temp);
+             hash.put(NUsername, temp);
+             savehash();
+             x.save();
+                     System.out.println("Username registration successfull");
+                 
              
-             BufferedWriter out=new BufferedWriter(new FileWriter("C:\\Users\\Chadi N. Louca\\Documents\\Cinema\\Users.txt",true));
-             
-             out.write(NUsername+"~"+NPassword+"~"+((UserData.s)+1)+"~");
-            
-               UserData.s++;
-             out.close();
-            System.out.println("Registration Succesfull");
-            //menu 2
          
             break;
-        
+    
           //-------------------------  --------------------------------------------------------
         default:  System.out.println("sorry but wrong entry ");
     }
