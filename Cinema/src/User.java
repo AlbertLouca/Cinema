@@ -1,28 +1,31 @@
+package Users;
+import static cinema.Cinema.UserLib;
+import static cinema.Cinema.hash;
 import java.io.*;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable {
         protected String username;
 
     protected String password;
-public ArrayList<String> UnToken(String Line){
-  //   String result[]=new String[50];
-     ArrayList<String> result=new ArrayList <String>(2);
-     String Word="";
-     int ctr=0;
-     for(int i=0;i<Line.length();i++){
-         if(Line.charAt(i)!='~'){
-             Word=Word+Line.charAt(i); 
-         }
-         else {
-             result.set(ctr,Word);
-             ctr++;
-             Word=new String();
-         }
-     }
-     return result;
-     
- }
+//public ArrayList<String> UnToken(String Line){
+//  //   String result[]=new String[50];
+//     ArrayList<String> result=new ArrayList <String>(2);
+//     String Word="";
+//     int ctr=0;
+//     for(int i=0;i<Line.length();i++){
+//         if(Line.charAt(i)!='~'){
+//             Word=Word+Line.charAt(i); 
+//         }
+//         else {
+//             result.set(ctr,Word);
+//             ctr++;
+//             Word=new String();
+//         }
+//     }
+//     return result;
+//     
+// }
     
    protected int ID;
     private static int count = 2 ;
@@ -69,29 +72,36 @@ else
             return false;
     }
 
-
-    public boolean Login(String username, String password) throws IOException
-    {
-     // File myFile = new File ("C:\\Users\\Chadi N. Louca\\Documents\\Cinema\\Users.txt");
-        BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\Chadi N. Louca\\Documents\\Cinema\\Users.txt"));   
-            String myString ;
-                    
-int i = 0 ;
-while((myString = in.readLine()) != null)
-{
-    
+//login using arraylist
+//    public boolean Login(String username, String password)
+//    {
+//    
+//   try {
+////        User_Data se=new User_Data();
+////        se.load();
+//    
+//       for(User d:UserLib){
+//           if(d.getUsername().equals(username)&&d.getPassword().equals(password))
+//               
+//               return true;
+//       }}
+//       catch (Exception e){
+//          
+//             return false;  }
+//                      
+//       return false;
+//    
+//      
+//    }
+    public boolean Login(String username,String password){
         
-    ArrayList<String> text = UnToken(myString) ; // Array Of Strings
-    for(int j=0;j<10;j++){
-        //System.out.println(text[j]);
-   
-    if (text.get(i).equals(username) && text.get(i+1).equals(password))
-           {
-         return true;
-     }
-i+=2;} in.close(); }
-         return false;
-    
-    }}
+        for(String x: hash.keySet()){
+            if(username.equals(x)&&password.equals(hash.get(x)))
+            return true;
             
-  
+        }
+        return false;
+        
+        
+    }
+}
