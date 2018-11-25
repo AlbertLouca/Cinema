@@ -1,13 +1,19 @@
+package Users;
+
+
+import cinema.Hall;
+import cinema.IFile;
+import cinema.Movie;
+import cinema.Now_Playing;
+import cinema.Seat;
 import java.io.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public class Movie_Data extends Manager implements IFile  {
+public class Movie_Data extends Manager implements IFile,Serializable  {
 //public int s=0; //----------------------------------------------------------->
    // private Movie movieArray[]=new Movie [Now_Playing.cap*2];
-    private ArrayList<Movie> movieArray=new ArrayList<Movie>(Now_Playing.cap*2);
+    public ArrayList<Movie> movieArray=new ArrayList<Movie>(Now_Playing.cap*2);
   //  private Hall arrayHalls[];
-    private ArrayList<Movie> arrayHalls=new ArrayList<Movie>();
+   public ArrayList<Movie> arrayHalls=new ArrayList<Movie>();
      public boolean checkSeatAvailability(Hall hall,int pos,char group) {
       Seat s;
       s=hall.getseat(group, pos);
@@ -65,11 +71,10 @@ public class Movie_Data extends Manager implements IFile  {
        }
      return false;
     }
-    @Override
    public boolean save()
     {
         try ( /*--------saves movies details--------*/
-                ObjectOutputStream nim = new ObjectOutputStream (new FileOutputStream("C:\\Users\\PC\\Desktop\\New.bin"))) {
+                ObjectOutputStream nim = new ObjectOutputStream (new FileOutputStream("C:\\Users\\Chadi N. Louca\\Documents\\Cinema\\Movie Data.bin"))) {
                 nim.writeObject(movieArray);
             nim.close();
             return true;
@@ -88,7 +93,7 @@ public class Movie_Data extends Manager implements IFile  {
     {
         try 
         {
-            ObjectInputStream nin = new ObjectInputStream (new FileInputStream("C:\\Users\\PC\\Desktop\\New.bin"));
+            ObjectInputStream nin = new ObjectInputStream (new FileInputStream("C:\\Users\\Chadi N. Louca\\Documents\\Cinema\\Movie Data.bin"));
              movieArray  =(ArrayList<Movie>) nin.readObject();
             nin.close();
             return true;
