@@ -8,30 +8,23 @@ public class User implements Serializable {
         protected String username;
 
     protected String password;
-//public ArrayList<String> UnToken(String Line){
-//  //   String result[]=new String[50];
-//     ArrayList<String> result=new ArrayList <String>(2);
-//     String Word="";
-//     int ctr=0;
-//     for(int i=0;i<Line.length();i++){
-//         if(Line.charAt(i)!='~'){
-//             Word=Word+Line.charAt(i); 
-//         }
-//         else {
-//             result.set(ctr,Word);
-//             ctr++;
-//             Word=new String();
-//         }
-//     }
-//     return result;
-//     
-// }
+protected Boolean isPowered;
     
    protected int ID;
+   public void givePower(){
+    isPowered=true;
+    
+    
+}
+   public Boolean getPower(){
+       
+       
+       return isPowered;
+   }
     private static int count = 2 ;
 public User ()
         {
-            
+            isPowered=false;
             this.ID = count;
             count++;
         }
@@ -72,27 +65,6 @@ else
             return false;
     }
 
-//login using arraylist
-//    public boolean Login(String username, String password)
-//    {
-//    
-//   try {
-////        User_Data se=new User_Data();
-////        se.load();
-//    
-//       for(User d:UserLib){
-//           if(d.getUsername().equals(username)&&d.getPassword().equals(password))
-//               
-//               return true;
-//       }}
-//       catch (Exception e){
-//          
-//             return false;  }
-//                      
-//       return false;
-//    
-//      
-//    }
     public boolean Login(String username,String password){
         
         for(String x: hash.keySet()){
