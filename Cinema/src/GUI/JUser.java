@@ -4,51 +4,95 @@
  * and open the template in the editor.
  */
 package GUI;
+import Users.User;
+import Users.User_Data;
+import static cinema.Cinema.UserLib;
+import static cinema.Cinema.hash;
+import static cinema.Cinema.savehash;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class JUser extends JFrame{
    
-  
-   public  JUser (String Title){
+  JPanel j1;
+  JTextArea ta;
+  JLabel l1;
+  JTextField username;
+  final JButton create;
+   JLabel l2;
+    JPasswordField p1;
+   public  JUser (){
        
-         JPanel j1=new JPanel();
+        j1=new JPanel();
  
      j1.setLayout(new FlowLayout());
   // JLabel username = new JLabel("username");
-   JTextArea ta=new JTextArea(1,1);
+   ta=new JTextArea(1,1);
    this.add(j1);
- 
-  JLabel l1=new JLabel("Username:");
-    JTextField username=new JTextField("type username here");
-  final JButton create=new JButton("create user");
-       
-         
- 
-   
+   l1=new JLabel("Username:");
+    username=new JTextField(10);
+   create=new JButton("create user");
         j1.add(l1);
        setBounds(500,300,200,200);
-        setTitle(Title); 
-       j1.setBackground(Color.green);
-        
-   
+        setTitle("Creating User"); 
+       j1.setBackground(Color.green);       
        j1.add(username);     //typing username
-       JLabel l2=new JLabel("Password:");
+      l2=new JLabel("Password:");
        j1.add(l2);
-       JPasswordField p1=new JPasswordField("                ");
-       
-       j1.add(p1);
-       
-       
-       
-       
-       
+      p1=new JPasswordField(10);
+       j1.add(p1);     
        j1.add(create);
-       
-       
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+       create.addActionListener(new myHolder());
+       // this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
     }
+   class myHolder implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+User u=new User();
+boolean istaken =false;
+
+
+  
+             for(User i:UserLib){
+                // System.out.println("testing");
+                 if (i.getUsername().equals(username.getText())){
+                   JOptionPane.showMessageDialog(null, "Username already taken");
+                   istaken=true;
+                   break;
+                    }}
+             if(istaken){}
+             else{
+                     u.setUsername(username.getText());
+                 u.setPassword(new String(p1.getPassword()));
+                
+                 UserLib.add(u);
+                 hash.put(u.getUsername(),u);
+    try {
+        savehash();
+        User_Data x=new User_Data();
+        x.save();
+        JOptionPane.showMessageDialog(null,"User Created Successfully");
+    } catch (IOException ex) {
+        Logger.getLogger(JUser.class.getName()).log(Level.SEVERE, null, ex);
+    }
+            
+        
+             }
+       
+       setVisible(false);}
+       
+        }
+
 }
+   
+   
+
     
