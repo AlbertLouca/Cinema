@@ -64,7 +64,7 @@ private Graphics myg;
             if(ButtonPressed.equals(reg)){
                 JUser n=new JUser();
                 n.setVisible(true);
-                setVisible(false);
+              //  setVisible(false);
                 
             }
          if(ButtonPressed.equals(log)){
