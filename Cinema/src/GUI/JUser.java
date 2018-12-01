@@ -72,7 +72,8 @@ boolean istaken =false;
              else{
                      u.setUsername(username.getText());
                  u.setPassword(new String(p1.getPassword()));
-                
+                if(username.getText().equals("admin"))
+                    u.givePower();
                  UserLib.add(u);
                  hash.put(u.getUsername(),u);
     try {
